@@ -1,0 +1,16 @@
+<h1>Posts</h1>
+
+<ul>
+    {% for post in posts %}
+        <li>
+            {{ post }}
+        </li>
+    {% endfor %}
+</ul>
+
+{% if page_obj.paginator.num_pages > 1 %}
+
+    {% include 'blog/_pagination.html' with page_obj=page_obj %}
+
+{% endif %}
+
