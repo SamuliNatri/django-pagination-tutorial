@@ -21,7 +21,6 @@ macOS, Linux:
 ```bash
 mkdir django-blog-app && cd django-blog-app
 git clone git@github.com:SamuliNatri/django-blog-app-tutorial.git .
-cd django-blog-app
 chmod 700 setup.sh
 ./setup.sh
 source venv/bin/activate
