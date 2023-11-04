@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <style>
+        .pagination {
+            margin-top: 1em;
+        }
+        
+        .pagination a {
+            text-decoration: none;
+        }
+        
+        .pagination-number {
+            padding: 0.5em 0.8em;
+            border-radius: 2px;
+            color: #fff;
+            background-color: #6D85C7;
+        }
+        
+        .pagination-number:hover,
+        .pagination-current {
+            background-color: #3354AA;
+        }
+        
+        .pagination-action {
+            margin: 0 0.1em;
+            display: inline-block;
+            padding: 0.5em 0.5em;
+            color: #B9B9B9;
+            font-size: 1.3em;
+        }
+        
+        .pagination-action:hover,
+        .pagination-previous,
+        .pagination-next {
+            color: #3354AA;
+        }
+    </style>
+    <title>Blue Pagination Theme</title>
+</head>
+
+<body>
+
+    <ul>
+        {% for post in posts %}
+        <li>
+            <a href="{{ post.get_absolute_url}}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a class="pagination-action" href="?page=1">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i> </a>
+        <a class="pagination-action" href="?page={{ page_obj.previous_page_number }}">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <span class="pagination-number pagination-current">{{ num }}</span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="pagination-number" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a class="pagination-action" href="?page={{ page_obj.next_page_number }}">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-action" href="?page={{ page_obj.paginator.num_pages }}">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </a>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
