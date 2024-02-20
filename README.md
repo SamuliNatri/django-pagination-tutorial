@@ -1,3 +1,7 @@
+# Check out my Django Book
+
+🔥Making Money with Django and AI: How to Build SaaS Services Using Python: https://samulinatri.com/books/making-money-with-django-and-ai
+
 # Django - Pagination Tutorial (Python)
 
 How to split lists into pages.
